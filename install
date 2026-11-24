@@ -1,0 +1,48 @@
+!/bin/bash
+set -e
+
+func_install() {
+	local package_file="$1"
+	local package
+	local count=0
+
+	if [[ ! -f "$package_file" ]]; then
+		echo "Package list not found: $package_file" >&2
+		return 1
+	fi
+
+	while IFS= read -r package || [[ -n "$package" ]]; do
+		package="${package%%*}"
+		package="${package//[[:space:]]/}"
+
+		[[ -z "$package" ]] && continue
+
+		count=$((count + 1))
+		tput setaf 3
+		echo "Installing package nr.  $count  $package"
+		tput sgr0
+
+		if pacman -Qi "$package" &> /dev/null; then
+			tput setaf 2
+			echo "The package $package is already installed"
+			tput sgr0
+		else
+			tput setaf 3
+			echo "  Installing package $package"
+			tput sgr0
+			sudo pacman -S --noconfirm --needed "$package"
+		fi
+	done < "$package_file"
+}
+
+
+
+# After installing nvidia-dkms nvidia-utils nvidia-settings nvidia-prime do:
+
+# script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# func_install "$script_dir/030-nvidia.txt"
+
+
+tput setaf 11;
+echo "Software has been installed"
+echo;tput sgr0
