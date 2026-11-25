@@ -2,9 +2,6 @@
 
 list=(
 
-## Nvidia
-nvidia-container-toolkit #  allows users to build and run GPU-accelerated containers
-
 ### AI setup
 ollama-cuda # Ollama is a tool for running and managing local AI models on your machine. It provides a simple interface to interact with various AI models, making it easier to experiment with and deploy them.
 

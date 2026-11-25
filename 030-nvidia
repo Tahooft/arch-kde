@@ -5,6 +5,7 @@ nvidia-dkms
 nvidia-utils
 nvidia-settings
 nvidia-prime
+nvidia-container-toolkit #  allows users to build and run GPU-accelerated containers
 # ? nouveau 
 )
 
@@ -35,3 +36,10 @@ echo "################################################################"
 echo " Updated ~/.Xresources --- if not set as commented
 echo "################################################################"
 echo;tput sgr0
+
+
+
+# After installing nvidia-dkms nvidia-utils nvidia-settings nvidia-prime do:
+
+# script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# func_install "$script_dir/030-nvidia.txt"

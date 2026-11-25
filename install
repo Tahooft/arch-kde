@@ -1,5 +1,5 @@
 #!/bin/bash
-# Exit on error
+# Helper for installing packages from a text file
 set -o errexit
 
 func_install() {
@@ -13,7 +13,7 @@ func_install() {
 	fi
 
 	while IFS= read -r package || [[ -n "$package" ]]; do
-		# Remove an inline comment and surrounding whitespace.
+		# Strip inline comments and trim surrounding whitespace.
 		package="${package%%#*}"
 		package="${package#"${package%%[![:space:]]*}"}"
 		package="${package%"${package##*[![:space:]]}"}"
@@ -37,14 +37,6 @@ func_install() {
 		fi
 	done < "$package_file"
 }
-
-
-
-# After installing nvidia-dkms nvidia-utils nvidia-settings nvidia-prime do:
-
-# script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-# func_install "$script_dir/030-nvidia.txt"
-
 
 tput setaf 11;
 echo "Software has been installed"
