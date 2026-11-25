@@ -17,7 +17,7 @@ visual-studio-code-bin
 youtube-dl
 )
 
-install list
+install list yay
 
 
 echo "Software has been installed"

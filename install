@@ -1,20 +1,31 @@
 #!/bin/bash
 # Install each package from the named Bash array, skipping already-installed packages.
 install() {
-	if [[ $# -ne 1 ]]; then
-		echo "Usage: install <array_name>" >&2
+	if [[ $# -lt 1 || $# -gt 2 ]]; then
+		echo "Usage: install <array_name> [pacman|yay]" >&2
 		return 2
 	fi
 
 	local list_name="$1"
+	local package_manager="${2:-pacman}"
 	local declaration
 	local package
 	local count=0
+
+	if [[ "$package_manager" != pacman && "$package_manager" != yay ]]; then
+		echo "Unsupported package manager: $package_manager (choose pacman or yay)" >&2
+		return 2
+	fi
 
 	if ! declaration=$(declare -p "$list_name" 2>/dev/null) ||
 		[[ "$declaration" != "declare -a "* ]]; then
 		echo "Package list is not a Bash array: $list_name" >&2
 		return 2
+	fi
+
+	if [[ "$package_manager" == yay ]] && ! command -v yay >/dev/null 2>&1; then
+		echo "Yay is required to install this package list" >&2
+		return 127
 	fi
 
 	local -n packages="$list_name"
@@ -37,7 +48,11 @@ install() {
 			tput setaf 3
 			echo "  Installing package $package"
 			tput sgr0
-			sudo pacman -S --noconfirm --needed "$package"
+			if [[ "$package_manager" == yay ]]; then
+				yay -S --noconfirm --needed "$package" || return $?
+			else
+				sudo pacman -S --noconfirm --needed "$package" || return $?
+			fi
 		fi
 	done
 }

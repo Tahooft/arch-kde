@@ -40,7 +40,7 @@ Most scripts are designed for x86-64 desktop or laptop systems. The NVIDIA scrip
 | `140-printers.sh` | Installs and enables CUPS printing software |
 | `150-samba.sh` | Installs Samba, copies an ArcoLinux config, and creates a Samba user |
 | `160-laptop.sh` | Installs and enables TLP |
-| `install` | Shared helper called with a Bash array name, for example `install list` |
+| `install` | Shared helper called with a Bash array name and optional manager, for example `install list` or `install list yay` |
 | `generate-package-list.sh` | Generates a package inventory from numbered scripts |
 | `package-lists/package-list-YYMMDD.txt` | Dated package inventory grouped by Pacman, Yay, and Flatpak |
 | `pkglist.txt` | Arch repository package snapshot or package selection |
