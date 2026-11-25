@@ -1,33 +1,32 @@
 #!/bin/bash
-set -e
+set -o errexit
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/install"
 
 list=(
+
 cups
-cups-pdf
 ghostscript
 gsfonts
 gutenprint
 gtk3-print-backends
 hplip # Linux drivers for HP printers and scanners
 libcups
+print-manager
 system-config-printer
+python-pyqt5
 )
 
-count=0
 
-for name in "${list[@]}" ; do
-	count=$[count+1]
-	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
-	func_install $name
-done
+if ! install list; then
+	echo "Package installation failed; CUPS was not enabled." >&2
+	exit 1
+fi
+
 
 echo "Enabling services"
-sudo systemctl enable --now cups.service
+sudo systemctl enable cups.service
 
-echo "# PRINTER SETUP "
-sudo pacman -S cups print-manager hplip python-pyqt5 --noconfirm --needed
-sudo systemctl enable cups
-echo "# PRINTER SETUP DONE "
 
 echo "Software has been installed"
-

@@ -26,6 +26,6 @@ if ! grep -qE '(^|[[:space:]])(vmx|svm)([[:space:]]|$)' /proc/cpuinfo; then
 fi
 
 install list
-sudo systemctl enable --now libvirtd.service
+sudo systemctl enable libvirtd.service
 
 echo "virt-manager and libvirt are installed. Open virt-manager and connect to QEMU/KVM."
