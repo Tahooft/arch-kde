@@ -23,6 +23,19 @@ trap cleanup EXIT
 
 extract_array_packages() {
 	awk '
+		function trim(value) {
+			sub(/^[[:space:]]+/, "", value)
+			sub(/[[:space:]]+$/, "", value)
+			return value
+		}
+		function comment_for(line, comment) {
+			if (match(line, /[[:space:]]+#/)) {
+				comment = trim(substr(line, RSTART + RLENGTH))
+				sub(/^#+[[:space:]]*/, "", comment)
+				return comment
+			}
+			return ""
+		}
 		/^[[:space:]]*list[[:space:]]*=[[:space:]]*\(/ {
 			in_list = 1
 			next
@@ -32,11 +45,19 @@ extract_array_packages() {
 			next
 		}
 		in_list {
-			sub(/[[:space:]]*#.*/, "")
-			n = split($0, packages, /[[:space:]]+/)
+			line = $0
+			sub(/^[[:space:]]+/, "", line)
+			if (line == "" || line ~ /^#/) {
+				next
+			}
+			comment = comment_for(line)
+			if (match(line, /[[:space:]]+#/)) {
+				line = substr(line, 1, RSTART - 1)
+			}
+			n = split(trim(line), packages, /[[:space:]]+/)
 			for (i = 1; i <= n; i++) {
 				if (packages[i] != "") {
-					print packages[i]
+					print packages[i] "\t" comment
 				}
 			}
 		}
@@ -45,17 +66,27 @@ extract_array_packages() {
 
 extract_pacman_commands() {
 	awk '
+		function trim(value) {
+			sub(/^[[:space:]]+/, "", value)
+			sub(/[[:space:]]+$/, "", value)
+			return value
+		}
 		{
 			line = $0
 			sub(/^[[:space:]]*#.*/, "", line)
-			sub(/[[:space:]]+#.*/, "", line)
+			comment = ""
+			if (match(line, /[[:space:]]+#/)) {
+				comment = trim(substr(line, RSTART + RLENGTH))
+				sub(/^#+[[:space:]]*/, "", comment)
+				line = substr(line, 1, RSTART - 1)
+			}
 			n = split(line, fields, /[[:space:]]+/)
 			for (i = 1; i < n; i++) {
 				if (fields[i] == "pacman" && fields[i + 1] == "-S") {
 					for (j = i + 2; j <= n; j++) {
 						if (fields[j] !~ /^-/ && fields[j] !~ /[$"]/ &&
 							fields[j] != "&&" && fields[j] != ";") {
-							print fields[j]
+							print fields[j] "\t" comment
 						}
 					}
 					break
@@ -67,14 +98,24 @@ extract_pacman_commands() {
 
 extract_flatpak_packages() {
 	awk '
+		function trim(value) {
+			sub(/^[[:space:]]+/, "", value)
+			sub(/[[:space:]]+$/, "", value)
+			return value
+		}
 		{
 			line = $0
-			sub(/^[[:space:]]+/, "", line)
+			line = trim(line)
 			if (line == "" || line ~ /^#/) {
 				next
 			}
 
-			sub(/[[:space:]]+#.*/, "", line)
+			comment = ""
+			if (match(line, /[[:space:]]+#/)) {
+				comment = trim(substr(line, RSTART + RLENGTH))
+				sub(/^#+[[:space:]]*/, "", comment)
+				line = substr(line, 1, RSTART - 1)
+			}
 			if (line ~ /(^|[[:space:]])flatpak[[:space:]]+install([[:space:]]|$)/) {
 				n = split(line, fields, /[[:space:]]+/)
 				install_seen = 0
@@ -84,18 +125,46 @@ extract_flatpak_packages() {
 						continue
 					}
 					if (install_seen && fields[i] !~ /^-/ && fields[i] != "flathub") {
-						print fields[i]
+						print fields[i] "\t" comment
 					}
 				}
 				next
 			}
 
 			if (line ~ /^#!/ || line ~ /^[[:alnum:]_.+-]+[[:space:]]*$/) {
-				sub(/[[:space:]]+$/, "", line)
-				print line
+				print trim(line) "\t" comment
 			}
 		}
 	' "$1"
+}
+
+format_packages() {
+	sort -u "$1" | awk -F '\t' '
+		function print_package() {
+			if (package == "") {
+				return
+			}
+			printf "%s", package
+			if (comments != "") {
+				printf " # %s", comments
+			}
+			printf "\n"
+		}
+		$1 != package {
+			print_package()
+			package = $1
+			comments = ""
+		}
+		$2 != "" {
+			comment_key = package SUBSEP $2
+			if (!seen[comment_key]++) {
+				comments = comments (comments == "" ? "" : "; ") $2
+			}
+		}
+		END {
+			print_package()
+		}
+	'
 }
 
 for source_file in "$script_dir"/[0-9]*; do
@@ -122,7 +191,7 @@ done
 
 	for manager in pacman yay flatpak; do
 		printf '%s packages:\n' "$manager"
-		sort -u "$temporary_dir/$manager"
+		format_packages "$temporary_dir/$manager"
 		printf '\n'
 	done
 } > "$temporary_output"

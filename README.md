@@ -121,7 +121,7 @@ Generate an inventory of package selections referenced by the numbered scripts:
 ./generate-package-list.sh
 ```
 
-This writes `package-lists/package-list-YYMMDD.txt`, with the current date in `YYMMDD` format, grouped by Pacman, Yay, and Flatpak. It lists configured package selections; it does not detect which packages are installed on the current system.
+This writes `package-lists/package-list-YYMMDD.txt`, with the current date in `YYMMDD` format, grouped by Pacman, Yay, and Flatpak. Inline comments on package entries are included. It lists configured package selections; it does not detect which packages are installed on the current system.
 
 ## Dotfiles
 

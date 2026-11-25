@@ -7,11 +7,11 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-serif-cn-fonts
 adobe-source-sans-fonts
 adwaita
-arch-audit
+arch-audit # A tool to check for potential issues in your Arch Linux system
 audacity
-audex
+audex # Audio extractor for KDE
 awesome-terminal-fonts
-baobab
+baobab # Disk Usage Analyzer
 bash-completion
 bash-language-server
 bat
@@ -24,7 +24,7 @@ btrfs-progs
 catfish
 chromium
 clamav
-cpupower
+cpupower # Linux kernel tool to examine and tune power saving related features of your processor
 cups
 cups-pdf
 docker
@@ -33,7 +33,7 @@ edk2-ovmf
 firefox
 firefox-adblock-plus
 flatpak
-fwupd
+fwupd # Firmware update daemon
 ghostscript
 gimp
 gimp-plugin-gmic
@@ -49,77 +49,77 @@ gtk-theme-elementary
 guestfs-tools
 gufw
 gutenprint
-gvfs
 gvfs-smb
-hblock
+gvfs # Virtual filesystem for GNOME
+hblock # adblocker - maybe needs setup
 hddtemp
 hdparm
 hplip
 hwinfo
-ifuse
-intel-ucode
-inxi
+ifuse # Filesystem driver that allows you to mount iOS devices on Linux
+intel-ucode # Microcode update files for Intel CPUs
+inxi # A full featured CLI system information tool
 jellyfin-ffmpeg
-k3b
+k3b # CD/DVD burning application
 kajongg
 kalm
 kasts
 kdeconnect
 kdenlive
 kid3
-kleopatra
-koko
+kleopatra # GPG key management application
+koko # A simple and fast image viewer for KDE
 kompare
 krename
 ksystemlog
-ktouch
+ktouch # A touch typing tutor for KDE
 libcups
-libimobiledevice
+libimobiledevice # A software library that talks the protocols to support iPhone, iPod Touch, iPad and Apple TV devices
 libosinfo
 libreoffice-fresh
 libusb-compat
 libvirt
 logrotate
-lshw
+lshw # A small tool to extract detailed information on the hardware configuration of the machine
 man-db
 man-pages
-mkvtoolnix-cli
+mkvtoolnix-cli # Set of tools to create, edit and inspect Matroska files
 mkvtoolnix-gui
-most
+most # pager for viewing text files in the terminal
 mpv
-ncdu
+ncdu # Disk Usage Analyzer with an ncurses interface
 neovim
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
-nvidia-container-toolkit
+nvidia-container-toolkit # allows users to build and run GPU-accelerated containers
 nvidia-dkms
 nvidia-prime
 nvidia-settings
 nvidia-utils
-nvtop
-ollama-cuda
+nvtop # GPUs process monitoring for AMD, Intel and NVIDIA
+ollama-cuda # Ollama is a tool for running and managing local AI models on your machine. It provides a simple interface to interact with various AI models, making it easier to experiment with and deploy them.
 oxygen-icons
-pacman-contrib
+pacman-contrib # includes oa pactree
 print-manager
 pychess
-python-mpv
+python-mpv # Python bindings for mpv
 python-pip
 python-pyqt5
 qemu-full
 qemu-img
 rsync
 samba
-seahorse
+seahorse # A GNOME application for managing encryption keys
 skanlite
 swtpm
-sysstat
+sysstat # real time drive usage. example: iostat -xh 1 5 --- toont drives (x=? h=human readble 1=update in seconds 5=how often)
 system-config-printer
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-volman
-tk
+tk # GUI toolkit for Tcl
 tlp
 tmux
 tree
@@ -130,7 +130,7 @@ ttf-font-awesome
 ttf-hack
 ttf-inconsolata
 ttf-liberation
-ttf-nerd-fonts-symbols
+ttf-nerd-fonts-symbols # Nice for neovim
 ttf-roboto
 ttf-ubuntu-font-family
 ufw
@@ -143,7 +143,7 @@ virt-viewer
 vlc
 vlc-plugins-all
 volumeicon
-wikiman
+wikiman # A simple GTK+ application to view and search the local man pages
 wireshark-qt
 wl-clipboard
 wqy-microhei
