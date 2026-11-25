@@ -1,20 +1,24 @@
 #!/bin/bash
-# Helper for installing packages from a text file
-set -o errexit
+# Install each package from the named Bash array, skipping already-installed packages.
+install() {
+	if [[ $# -ne 1 ]]; then
+		echo "Usage: install <array_name>" >&2
+		return 2
+	fi
 
-func_install() {
-	local package_file="$1"
+	local list_name="$1"
+	local declaration
 	local package
 	local count=0
 
-	if [[ ! -f "$package_file" ]]; then
-		echo "Package list not found: $package_file" >&2
-		return 1
+	if ! declaration=$(declare -p "$list_name" 2>/dev/null) ||
+		[[ "$declaration" != "declare -a "* ]]; then
+		echo "Package list is not a Bash array: $list_name" >&2
+		return 2
 	fi
 
-	while IFS= read -r package || [[ -n "$package" ]]; do
-		# Strip inline comments and trim surrounding whitespace.
-		package="${package%%#*}"
+	local -n packages="$list_name"
+	for package in "${packages[@]}"; do
 		package="${package#"${package%%[![:space:]]*}"}"
 		package="${package%"${package##*[![:space:]]}"}"
 
@@ -22,7 +26,7 @@ func_install() {
 
 		count=$((count + 1))
 		tput setaf 3
-		echo "Installing package nr.  $count  $package"
+		echo "Installing package nr. $count: $package"
 		tput sgr0
 
 		if pacman -Qi "$package" &> /dev/null; then
@@ -35,9 +39,5 @@ func_install() {
 			tput sgr0
 			sudo pacman -S --noconfirm --needed "$package"
 		fi
-	done < "$package_file"
+	done
 }
-
-tput setaf 11;
-echo "Software has been installed"
-echo;tput sgr0
