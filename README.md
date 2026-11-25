@@ -40,7 +40,9 @@ Most scripts are designed for x86-64 desktop or laptop systems. The NVIDIA scrip
 | `140-printers.sh` | Installs and enables CUPS printing software |
 | `150-samba.sh` | Installs Samba, copies an ArcoLinux config, and creates a Samba user |
 | `160-laptop.sh` | Installs and enables TLP |
-| `install` | Example helper for installing packages from a text file |
+| `install` | Shared helper called with a Bash array name, for example `install list` |
+| `generate-package-list.sh` | Generates a package inventory from numbered scripts |
+| `package-lists/package-list-YYMMDD.txt` | Dated package inventory grouped by Pacman, Yay, and Flatpak |
 | `pkglist.txt` | Arch repository package snapshot or package selection |
 | `foreignpkglist.txt` | AUR and other foreign package snapshot or package selection |
 | `Dots/` | Example Bash, font, Git, and NVIDIA configuration files |
@@ -113,7 +115,13 @@ cat pkglist.txt
 cat foreignpkglist.txt
 ```
 
-The included `install` script contains a helper for reading a package name from each non-empty line of a file. It should be adapted and tested for the target system before use.
+Generate an inventory of package selections referenced by the numbered scripts:
+
+```bash
+./generate-package-list.sh
+```
+
+This writes `package-lists/package-list-YYMMDD.txt`, with the current date in `YYMMDD` format, grouped by Pacman, Yay, and Flatpak. It lists configured package selections; it does not detect which packages are installed on the current system.
 
 ## Dotfiles
 
