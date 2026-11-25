@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 list=(
 
@@ -151,20 +151,10 @@ done
 
 export MANPAGER=less
 
-###############################################################################
 
 tput setaf 11;
-echo "################################################################"
 echo "Software has been installed"
-echo "################################################################"
 echo;tput sgr0
 
 echo;tput sgr0
 
-# xrdb ~/.Xresources
-
-tput setaf 11;
-echo "################################################################"
-echo " Updated ~/.Xresources --- if not set as commented
-echo "################################################################"
-echo;tput sgr0
