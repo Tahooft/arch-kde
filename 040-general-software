@@ -5,7 +5,7 @@ source "$script_dir/install"
 
 list=(
 
-### AI setup
+### AI setup, move to a separate script
 ollama-cuda # Ollama is a tool for running and managing local AI models on your machine. It provides a simple interface to interact with various AI models, making it easier to experiment with and deploy them.
 
 
