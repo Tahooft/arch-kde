@@ -1,0 +1,23 @@
+
+
+list=(
+
+virt-manager
+qemu-full 
+libvirt virt-install 
+virt-manager 
+virt-viewer
+edk2-ovmf 
+swtpm 
+qemu-img 
+guestfs-tools 
+libosinfo
+)
+
+count=0
+
+for name in "${list[@]}" ; do
+	count=$[count+1]
+	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
+	func_install $name
+done
