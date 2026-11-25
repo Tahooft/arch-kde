@@ -1,23 +1,31 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
 
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/install"
 
 list=(
-
-virt-manager
-qemu-full 
-libvirt virt-install 
-virt-manager 
-virt-viewer
-edk2-ovmf 
-swtpm 
-qemu-img 
-guestfs-tools 
-libosinfo
+	qemu-full
+	libvirt
+	virt-manager
+	virt-install
+	virt-viewer
+	dnsmasq
+	edk2-ovmf
+	swtpm
+	qemu-img
+	guestfs-tools
+	libosinfo
 )
 
-count=0
+if ! grep -qE '(^|[[:space:]])(vmx|svm)([[:space:]]|$)' /proc/cpuinfo; then
+	echo "Warning: CPU virtualization extensions (VMX/SVM) are not available." >&2
+	echo "Enable virtualization support in firmware before creating accelerated VMs." >&2
+fi
 
-for name in "${list[@]}" ; do
-	count=$[count+1]
-	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
-	func_install $name
-done
+install list
+sudo systemctl enable --now libvirtd.service
+
+echo "virt-manager and libvirt are installed. Open virt-manager and connect to QEMU/KVM."

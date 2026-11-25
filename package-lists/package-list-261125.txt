@@ -27,6 +27,7 @@ clamav
 cpupower # Linux kernel tool to examine and tune power saving related features of your processor
 cups
 cups-pdf
+dnsmasq
 docker
 docker-compose
 edk2-ovmf
@@ -54,7 +55,7 @@ gvfs # Virtual filesystem for GNOME
 hblock # adblocker - maybe needs setup
 hddtemp
 hdparm
-hplip
+hplip # Linux drivers for HP printers and scanners
 hwinfo
 ifuse # Filesystem driver that allows you to mount iOS devices on Linux
 intel-ucode # Microcode update files for Intel CPUs
@@ -92,9 +93,7 @@ neovim
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
-nvidia-container-toolkit # allows users to build and run GPU-accelerated containers
-nvidia-dkms
-nvidia-prime
+nvidia-open-dkms
 nvidia-settings
 nvidia-utils
 nvtop # GPUs process monitoring for AMD, Intel and NVIDIA
@@ -144,7 +143,6 @@ vlc
 vlc-plugins-all
 volumeicon
 wikiman # A simple GTK+ application to view and search the local man pages
-wireshark-qt
 wl-clipboard
 wqy-microhei
 wqy-zenhei
@@ -156,7 +154,6 @@ backintime-cli
 brave-bin
 btrfs-assistant
 btrfs-desktop-notification
-clamav-unofficial-sigs
 visual-studio-code-bin
 youtube-dl
 
