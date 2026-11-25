@@ -130,9 +130,4 @@ install list
 export MANPAGER=less
 
 
-tput setaf 11;
 echo "Software has been installed"
-echo;tput sgr0
-
-echo;tput sgr0
-

@@ -1,11 +1,6 @@
 #!/bin/bash
 set -e
-# First one needed is: pamac-aur (https://aur.archlinux.org/pamac-aur.git)
 
-
-echo ""
-echo "###     Installing  from AUR                                 ###"
-echo ""
 
 BUILDS=~/.builds
 
@@ -27,6 +22,6 @@ git clone https://aur.archlinux.org/${filename}.git
 cd $filename
 makepkg -sicr
 
-echo ""
-echo "###     Done                                                 ###"
-echo ""
+
+echo "Done installing ${filename} from AUR"
+

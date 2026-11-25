@@ -13,3 +13,5 @@ nvidia-settings
 
 install list
 
+
+echo "Software has been installed"
