@@ -1,27 +1,23 @@
+#!/bin/bash
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/install"
 
 list=(
-tlp
+
+tlp # Linux Advanced Power Management
+
 )
 
-count=0
 
-for name in "${list[@]}" ; do
-	count=$[count+1]
-	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
-	func_install $name
-done
+if ! install list; then
+	echo "Package installation failed; TLP was not enabled." >&2
+	exit 1
+fi
 
-###############################################################################
 
-tput setaf 5;echo "################################################################"
 echo "Enabling services"
-echo "################################################################"
-echo;tput sgr0
-
 sudo systemctl enable tlp.service
 
-tput setaf 11;
-echo "################################################################"
+
 echo "Software has been installed"
-echo "################################################################"
-echo;tput sgr0
