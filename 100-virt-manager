@@ -26,6 +26,11 @@ if ! grep -qE '(^|[[:space:]])(vmx|svm)([[:space:]]|$)' /proc/cpuinfo; then
 fi
 
 install list
-sudo systemctl enable libvirtd.service
+sudo systemctl enable --now libvirtd.service
+sudo virsh net-autostart default
+if ! sudo virsh net-list --state-active --name | grep -Fxq default; then
+	sudo virsh net-start default
+fi
 
-echo "virt-manager and libvirt are installed. Open virt-manager and connect to QEMU/KVM."
+echo "virt-manager and libvirt are installed, and the default network is enabled."
+echo "Open virt-manager and connect to QEMU/KVM."
