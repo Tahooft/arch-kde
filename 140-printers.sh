@@ -1,3 +1,5 @@
+#!/bin/bash
+set -e
 
 list=(
 cups
@@ -6,6 +8,7 @@ ghostscript
 gsfonts
 gutenprint
 gtk3-print-backends
+hplip # Linux drivers for HP printers and scanners
 libcups
 system-config-printer
 )
@@ -18,17 +21,13 @@ for name in "${list[@]}" ; do
 	func_install $name
 done
 
-###############################################################################
-
-tput setaf 5;echo "################################################################"
 echo "Enabling services"
-echo "################################################################"
-echo;tput sgr0
-
 sudo systemctl enable --now cups.service
 
-tput setaf 11;
-echo "################################################################"
+echo "# PRINTER SETUP "
+sudo pacman -S cups print-manager hplip python-pyqt5 --noconfirm --needed
+sudo systemctl enable cups
+echo "# PRINTER SETUP DONE "
+
 echo "Software has been installed"
-echo "################################################################"
-echo;tput sgr0
+

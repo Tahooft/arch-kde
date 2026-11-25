@@ -34,13 +34,6 @@ backintime-cli
 brave-bin
 btrfs-assistant
 btrfs-desktop-notification
-clamav-unofficial-sigs
-# ddev-bin
-# dropbox
-#nomacs #  	A Qt image viewer
-# phoronix-test-suite
-# subtitleedit
-# tealdeer   # concise man pages 
 visual-studio-code-bin
 youtube-dl
 )

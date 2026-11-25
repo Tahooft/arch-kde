@@ -66,7 +66,6 @@ catfish
 chromium
 clamav
 cpupower 	# Linux kernel tool to examine and tune power saving related features of your processor
-# cronie
 flatpak
 firefox
 firefox-adblock-plus
@@ -74,7 +73,6 @@ fwupd # Firmware update daemon
 gimp
 gimp-plugin-gmic
 git
-# gnome-boxes
 gnome-disk-utility
 gnome-mahjongg
 gparted
@@ -84,8 +82,6 @@ hblock	# adblocker - maybe needs setup
 hddtemp
 hdparm
 hwinfo
-# hplip
-# i7z 	# A better i7 (and now i3, i5) reporting tool for Linux
 intel-ucode	# Microcode update files for Intel CPUs
 inxi # A full featured CLI system information tool
 jellyfin-ffmpeg
@@ -96,16 +92,13 @@ logrotate
 lshw # A small tool to extract detailed information on the hardware configuration of the machine
 man-db
 man-pages
-# meld
 mkvtoolnix-cli # Set of tools to create, edit and inspect Matroska files
 mkvtoolnix-gui
 most # pager for viewing text files in the terminal
 mpv
 ncdu # Disk Usage Analyzer with an ncurses interface
-# neofetch
 neovim
 nvtop	# GPUs process monitoring for AMD, Intel and NVIDIA
-# power-profiles-daemon # Makes power profiles handling available over D-Bus
 pacman-contrib # includes oa pactree
 pychess
 python-mpv # Python bindings for mpv
@@ -128,16 +121,6 @@ volumeicon
 wikiman ## A simple GTK+ application to view and search the local man pages
 wl-clipboard
 yt-dlp
-
-# XFCE4
-# xfce4
-# garcon
-# xfwm4
-# xfdesktop
-# xfce4-session
-# arandr
-# autorandr
-# arc-gtk-theme
 
 )
 

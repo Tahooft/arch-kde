@@ -1,0 +1,55 @@
+
+## Yay
+clamav-unofficial-sigs # A set of scripts to update and manage the unofficial signatures for ClamAV
+dupeguru
+sublime-text-4
+# ddev-bin
+# dropbox
+#nomacs #  	A Qt image viewer
+# phoronix-test-suite
+# subtitleedit
+# tealdeer   # concise man pages 
+tamsyn-font # A font for programming and terminal use, based on the Bitstream Vera Sans Mono font
+
+## Pacman
+# cronie
+# gnome-boxes
+# meld
+# neofetch
+# power-profiles-daemon # Makes power profiles handling available over D-Bus
+
+## XFCE4
+# xfce4
+# garcon
+# xfwm4
+# xfdesktop
+# xfce4-session
+# arandr
+# autorandr
+# arc-gtk-theme
+
+
+
+# echo " Enable systemd-boot-update "
+# sudo systemctl enable systemd-boot-update
+# echo "# systemd-boot-update enabled "
+
+
+
+# echo " CRON "
+# if pacman -Qi cron &> /dev/null; then
+#  sudo pacman -S cron --noconfirm --needed
+# fi
+# sudo systemctl start cronie
+# sudo systemctl enable cronie
+# echo "# CRON DONE "
+
+# echo "# BLUETOOTH SETUP "
+# sudo systemctl start bluetooth.service
+# sudo systemctl enable bluetooth.service
+# echo "BLUETOOTH SETUP DONE "
+
+# echo " MKCERT - needed for DDEV "
+#  sudo pacman -S mkcert --noconfirm --needed
+#  mkcert -install
+# echo "# MKCERT -install done "
