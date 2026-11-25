@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # Exit on error
 set -o errexit
 
@@ -13,8 +13,10 @@ func_install() {
 	fi
 
 	while IFS= read -r package || [[ -n "$package" ]]; do
-		package="${package%%*}"
-		package="${package//[[:space:]]/}"
+		# Remove an inline comment and surrounding whitespace.
+		package="${package%%#*}"
+		package="${package#"${package%%[![:space:]]*}"}"
+		package="${package%"${package##*[![:space:]]}"}"
 
 		[[ -z "$package" ]] && continue
 
