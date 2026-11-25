@@ -28,6 +28,12 @@ tamsyn-font # A font for programming and terminal use, based on the Bitstream Ve
 # autorandr
 # arc-gtk-theme
 
+For your setup:
+nvidia-prime: likely not needed. PRIME is for switching or offloading between integrated and NVIDIA graphics. Your Xeon E5-1650 v3/HP Z440 setup is a desktop workstation, not a hybrid-graphics laptop.
+nvidia-container-toolkit: only if Ollama runs inside Docker and needs GPU access. If Ollama runs directly on Arch and Open WebUI is the only container, Ollama uses the host NVIDIA driver; the Open WebUI container doesn’t need the toolkit just to connect to Ollama.
+
+nvidia-prime
+nvidia-container-toolkit
 
 
 # echo " Enable systemd-boot-update "

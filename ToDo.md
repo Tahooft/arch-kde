@@ -4,3 +4,4 @@
 - [ ] Move the AI packages out of `040-general-software` into a separate install script.
 - [ ] Review the unfinished setup items in `050-needs-setup-software.sh` and decide which should be implemented, documented, or removed.
 - [ ] Have a look at best practices for HP printer install procedure and edit 140-printers.sh after that
+- [ ] The current `install` helper doesn’t stop on a failed package install, it should be logged.
