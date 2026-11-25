@@ -35,7 +35,7 @@ Most scripts are designed for x86-64 desktop or laptop systems. The NVIDIA scrip
 | `060-aur-install-input.sh` | Builds and installs an AUR package named interactively |
 | `080-chinese.sh` | Adds Chinese fonts and locale configuration guidance |
 | `090-setup-git.sh` | Initializes Git and sets global Git configuration |
-| `100-virt-manager` | Installs QEMU/KVM, libvirt, networking support, and Virtual Machine Manager; enables libvirt |
+| `100-virt-manager` | Installs QEMU/KVM, libvirt, networking support, and Virtual Machine Manager; starts libvirt and enables its default network |
 | `130-bluetooth.sh` | Installs and enables Bluetooth software and service |
 | `140-printers.sh` | Installs and enables CUPS printing software |
 | `150-samba.sh` | Installs Samba, copies an ArcoLinux config, and creates a Samba user |
